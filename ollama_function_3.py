@@ -2,7 +2,7 @@ from langchain_experimental.llms.ollama_functions import OllamaFunctions
 
 # Initialize the model with the appropriate format
 model = OllamaFunctions(
-    model="mistral:instruct",
+    model="phi3.5",
     format='json',
 )
 
