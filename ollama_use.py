@@ -7,7 +7,7 @@ llm = ChatOllama(
     keep_alive = -1,
     temparature = 0.7,
     max_tokens = 2048)
-prompt  = ChatPromptTemplate.from_template("Write a 100 letter essay for {topic} from the perspective of a {profession}. ")
+prompt  = ChatPromptTemplate.from_template("Write a 100 letter essay on {topic} from the perspective of a {profession}. ")
 
 chain = prompt | llm | StrOutputParser()
 stream = chain.stream({"topic":"LLMs","profession":"shipping magnate"})
