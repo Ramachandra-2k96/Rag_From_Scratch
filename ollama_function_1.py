@@ -1,3 +1,9 @@
+"""
+This module demonstrates the use of Langchain to generate a response based on a given context and question.
+
+It uses the Ollama model to process the input and return a structured output in JSON format.
+"""
+
 from langchain_core.prompts import PromptTemplate
 from langchain_core.pydantic_v1 import BaseModel, Field
 from langchain_experimental.llms.ollama_functions import OllamaFunctions
@@ -28,17 +34,23 @@ QUESTION:{question}<|end|>
 Prompt= PromptTemplate.from_template(# change this one according to model [ current one is for only llama family,Hermis family
    llama3_template)
 
+# This block of code sets up the OllamaFunctions object with specific settings for the "hermes3" model.
+# It also customizes the output format to be JSON and sets a structured output schema using the Person class defined earlier.
+# Finally, it combines these settings with the PromptTemplate and uses them to create a chain that can be used to get answers from the OllamaFunctions object.
+
 llm = OllamaFunctions(
     model="hermes3",
     temperature=0,
     format = 'json',
 )
+# The structured_llm variable is assigned an object of type llm.with_structured_output, where we're using the Person schema for structured output.
 structured_llm= llm.with_structured_output(Person)
+
+# Now, this PromptTemplate is used to create a chain that can be used to generate answers from the llm object
 chain = Prompt | structured_llm
 
 response = chain.invoke({
     "question":"Who is taller?",
     "context":context
 })    
-for chunk in response:
-    print(chunk,flush=True,end="")
+print(response)
