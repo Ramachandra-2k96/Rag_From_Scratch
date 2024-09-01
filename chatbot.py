@@ -119,7 +119,7 @@ while True:
         response = selector(stream)
         
         # Create AIMessage and append as a dictionary to the messages list
-        ai_message = {'role': 'assistant', 'content': response}
+        ai_message = {'role': 'assistant', 'content': str(response)}
         messages.append(ai_message)
         
     except Exception as e:
