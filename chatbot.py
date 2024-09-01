@@ -68,6 +68,7 @@ def use_Internet(query: str) -> str:
     model = OllamaChat(model='gemma2:2b')
     online_model = OnlineAgent(model)
     result = online_model.search(query)
+    print(f"{terminal_colors['blue']}AI ==> {terminal_colors['cyan']}", result, f"{terminal_colors['reset']}")
     return result
 
 @tool
