@@ -65,7 +65,7 @@ def devide(a: float, b: float) -> float:
 @tool
 def use_Internet(query: str) -> str:
     """ Use internet if there is a shortage of information or anything related to up-to-date information"""
-    model = OllamaChat(model='gemma2:2b')
+    model = OllamaChat(model='phi3.5')
     online_model = OnlineAgent(model)
     result = online_model.search(query)
     print(f"{terminal_colors['blue']}AI ==> {terminal_colors['cyan']}", result, f"{terminal_colors['reset']}")
@@ -76,7 +76,7 @@ def normal_usecase(query: str) -> str:
     """ Use this function to reply to queries that you can answer without additional data or the need for more information from the internet"""
     global messages
     # Pass messages as a list of dictionaries with role and content
-    response_stream = ollama.chat(model='gemma2:2b', messages=messages, stream=True)
+    response_stream = ollama.chat(model='phi3.5', messages=messages, stream=True)
     output = ''
     print(f"{terminal_colors['blue']}AI ==> {terminal_colors['cyan']}", end='')
     for chunk in response_stream:
